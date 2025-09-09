@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moodie – Your Mood, Your Colors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary: #A8DADC; /* azul suave */
+      --accent:  #E5989B; /* rosa pastel */
+      --bg:      #F1FAEE; /* crema */
+      --text:    #1f2937; /* gris oscuro legible */
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+
+    /* Header */
+    header{position:sticky;top:0;background:rgba(241,250,238,.8);backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid rgba(0,0,0,.05);z-index:10}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:700}
+    .logo-badge{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--accent));display:grid;place-items:center;color:white;font-size:18px}
+    .nav a.cta{padding:10px 16px;border-radius:14px;background:var(--text);color:#fff;font-weight:600}
+
+    /* Hero */
+    .hero{padding:72px 0;}
+    .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:#ffffffba;border:1px solid rgba(0,0,0,.06);font-size:12px}
+    h1{font-size:clamp(32px,6vw,56px);line-height:1.05;margin:12px 0}
+    .lead{font-size:clamp(16px,2.4vw,20px);opacity:.9}
+    .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;border-radius:16px;font-weight:600;border:2px solid transparent}
+    .btn-primary{background:var(--accent);color:white}
+    .btn-secondary{background:#fff;border-color:rgba(0,0,0,.08)}
+
+    /* Phone mockup */
+    .phone-wrap{position:relative;}
+    .blob{position:absolute;inset:-40px -60px -60px -40px;z-index:-1;filter:blur(30px);opacity:.9;background:
+      radial-gradient(120px 120px at 20% 20%, var(--primary), transparent 60%),
+      radial-gradient(140px 140px at 80% 30%, var(--accent), transparent 60%),
+      radial-gradient(160px 160px at 50% 80%, #c7e9e7, transparent 60%)}
+    .phone{width:min(360px,84%);margin-inline:auto;border-radius:36px;padding:14px;border:1px solid rgba(0,0,0,.08);background:linear-gradient(#eaeaea,#fafafa)}
+    .screen{border-radius:28px;overflow:hidden;border:1px solid rgba(0,0,0,.06)}
+
+    /* Steps */
+    .steps{padding:40px 0}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:18px;padding:18px}
+    .card h3{margin:8px 0 6px}
+    .icon{width:28px;height:28px}
+
+    /* Benefits */
+    .benefits{padding:18px;background:linear-gradient(135deg, #ffffff 0%, #ffffff 40%, #fbe9ec 100%);border:1px solid rgba(0,0,0,.05);border-radius:22px}
+    .benefit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
+    .benefit{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:16px;font-size:14px}
+
+    /* Testimonials */
+    .testimonials{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:10px}
+    .quote{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:18px}
+    .who{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:14px;opacity:.9}
+    .avatar{width:28px;height:28px;border-radius:999px;background:linear-gradient(135deg,var(--primary),var(--accent))}
+
+    /* Footer */
+    footer{margin-top:48px;border-top:1px solid rgba(0,0,0,.06)}
+    .foot{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;padding:22px 0}
+    .storebadges{display:flex;gap:10px}
+    .badge{display:inline-flex;gap:10px;align-items:center;background:#111;color:#fff;border-radius:12px;padding:10px 12px;font-size:12px}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .hero-inner{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr}
+      .benefit-grid{grid-template-columns:1fr 1fr}
+      .testimonials{grid-template-columns:1fr}
+      .foot{grid-template-columns:1fr}
+      .nav a.cta{display:none}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <div class="logo-badge">M</div>
+        <span>Moodie</span>
+      </div>
+      <a class="cta" href="#descargar">Descargar</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <span class="eyebrow">✨ Convierte tus emociones en colores</span>
+        <h1>Your Mood, Your Colors</h1>
+        <p class="lead">Moodie personaliza tu celular con fondos, íconos y tonos en <strong>colores pastel</strong> según tu estado de ánimo. Simple, lindo y mágico.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#descargar">
+            <!-- Sparkles icon -->
+            <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3l1.6 3.6L17 8.2l-3.4 1.6L12 13l-1.6-3.2L7 8.2l3.4-1.6L12 3zM5 14l.9 2l2.1.9l-2.1.9L5 20l-.9-2.1L2 16.9L4.1 16L5 14zm12 2l1.2 2.6L21 20l-2.8 1.4L17 24l-1.2-2.6L13 20l2.8-1.4L17 16z" fill="currentColor"/></svg>
+            Descárgala ahora
+          </a>
+          <a class="btn btn-secondary" href="#como-funciona">
+            <!-- Info icon -->
+            <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M12 8h.01M11 12h2v6h-2v-6z" fill="currentColor"/></svg>
+            ¿Cómo funciona?
+          </a>
+        </div>
+      </div>
+      <div class="phone-wrap">
+        <div class="blob" aria-hidden="true"></div>
+        <div class="phone">
+          <div class="screen">
+            <!-- Simple phone UI preview with 3 moods -->
+            <svg viewBox="0 0 360 720" xmlns="http://www.w3.org/2000/svg" aria-label="Vista previa de Moodie">
+              <defs>
+                <linearGradient id="calm" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#BEE1C3"/>
+                  <stop offset="100%" stop-color="#A8DADC"/>
+                </linearGradient>
+                <linearGradient id="energy" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#FFD6E0"/>
+                  <stop offset="100%" stop-color="#E5989B"/>
+                </linearGradient>
+                <linearGradient id="night" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#D5E9FF"/>
+                  <stop offset="100%" stop-color="#B4C6FF"/>
+                </linearGradient>
+              </defs>
+              <rect width="360" height="720" fill="url(#calm)"/>
+              <!-- top bar -->
+              <rect x="0" y="0" width="360" height="44" fill="rgba(255,255,255,.4)"/>
+
+              <!-- mood dots -->
+              <g transform="translate(26,84)">
+                <circle cx="0" cy="0" r="10" fill="#4b5563"/>
+                <text x="20" y="6" font-family="Poppins" font-size="16" fill="#334155">Mood: Calma</text>
+              </g>
+
+              <!-- three preview cards -->
+              <g transform="translate(20,130)">
+                <rect rx="20" ry="20" width="320" height="140" fill="url(#calm)" stroke="#ffffff88"/>
+                <text x="20" y="36" font-family="Poppins" font-size="18" fill="#1f2937">Calma</text>
+              </g>
+              <g transform="translate(20,290)">
+                <rect rx="20" ry="20" width="320" height="140" fill="url(#energy)" stroke="#ffffff88"/>
+                <text x="20" y="36" font-family="Poppins" font-size="18" fill="#1f2937">Energía</text>
+              </g>
+              <g transform="translate(20,450)">
+                <rect rx="20" ry="20" width="320" height="140" fill="url(#night)" stroke="#ffffff88"/>
+                <text x="20" y="36" font-family="Poppins" font-size="18" fill="#1f2937">Noche</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como-funciona" class="container steps">
+    <h2>¿Cómo funciona?</h2>
+    <div class="cards">
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3l6 6-6 6-6-6 6-6z" fill="currentColor"/></svg>
+        <h3>1. Elige tu mood</h3>
+        <p>Selecciona cómo te sientes: calma, energía, foco, noche…</p>
+      </div>
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 12h16M12 4v16" stroke="currentColor" stroke-width="2"/></svg>
+        <h3>2. Genera diseño</h3>
+        <p>La app crea un fondo e íconos en colores pastel acorde.</p>
+      </div>
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 11l2 2 4-4" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        <h3>3. ¡Listo!</h3>
+        <p>Actívalo y disfruta tu celular con tu vibra del día.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container benefits">
+    <h2>Beneficios</h2>
+    <div class="benefit-grid">
+      <div class="benefit">🎨 Diseños únicos creados con IA.</div>
+      <div class="benefit">🌙 Modos día y noche automáticos.</div>
+      <div class="benefit">🪄 Wallpapers animados para moods especiales.</div>
+      <div class="benefit">🎵 Se integra con tu música favorita.</div>
+    </div>
+  </section>
+
+  <section class="container" style="margin-top:26px">
+    <h2>Lo que dicen</h2>
+    <div class="testimonials">
+      <div class="quote">
+        “Desde que uso Moodie, mi celular refleja mi estilo cada día 💖”.
+        <div class="who"><div class="avatar"></div> Camila</div>
+      </div>
+      <div class="quote">
+        “Me encanta cómo cambia con mi música 🎶”.
+        <div class="who"><div class="avatar"></div> Diego</div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="descargar" class="container">
+    <div class="foot">
+      <div>
+        <strong>¿Lista para probar Moodie?</strong>
+        <div style="opacity:.8">Disponible pronto para iOS y Android.</div>
+      </div>
+      <div class="storebadges">
+        <span class="badge" aria-label="App Store (ficticio)">
+          <!-- apple icon -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 13c0 3 2 4 2 4s-1 3-3 3-2-1-4-1-2 1-4 1-3-3-3-3 2-1 2-4-2-4-2-4 1-3 3-3 2 1 4 1 2-1 4-1 3 3 3 3-2 1-2 4z"/></svg>
+          App&nbsp;Store
+        </span>
+        <span class="badge" aria-label="Google Play (ficticio)">
+          <!-- play icon -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 2l15 10L3 22V2z"/></svg>
+          Google&nbsp;Play
+        </span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
